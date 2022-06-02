@@ -1,12 +1,14 @@
 class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
         colors = ['' for x in range(len(graph))]
+        # for checking the disjoint or disconnected graphs
         for index, value in enumerate(colors):
             if value != "":
                 continue
             queue = [index]
             visited = [index]
             colors[index] = True
+            # for bfs
             while len(queue) is not 0:
                 node = queue.pop(0)
                 for i in graph[node]:
