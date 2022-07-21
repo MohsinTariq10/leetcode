@@ -1,0 +1,16 @@
+  while(i<n):
+    c = int(strParam[i])
+    j = i
+    while(j < c):
+      if int(strParam[j])!=c:
+        i = j
+        count=0
+        break
+      j+=1
+      count+=1
+      
+    if count==c:
+      return True
+    else:
+      i = j
+  return False
