@@ -1,20 +1,14 @@
 import numpy as np
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        non_overlap = []
-        indices = []
-        n = len(intervals)
-        a = np.array(intervals)
-        intervals = a[a[:, 0].argsort()].tolist()
-        print(intervals)
-        for interval in intervals:
-            start, end = interval
-            if not non_overlap:
-                non_overlap.append(interval)
-                continue
-            s, e = non_overlap[-1]
-            if start <= e:
-                non_overlap[-1] = [min(start, s), max(end, e)]
+        i = 0
+        intervals.sort()
+        while(i < len(intervals)-1):
+            s1,e1 = intervals[i]
+            s2, e2 = intervals[i+1]
+            if(s2<=e1 and e2>=s1):
+                intervals[i] = [min(s1,s2),max(e1,e2)]
+                intervals.pop(i+1)
             else:
-                non_overlap.append(interval)
-        return non_overlap
+                i += 1
+        return intervals
