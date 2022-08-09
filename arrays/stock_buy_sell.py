@@ -11,3 +11,17 @@ class Solution:
             if buy > prices[i]:
                 buy = prices[i]
         return profit
+
+def maximumProfit(prices):
+    # Write your code here.
+    buy = 0
+    sell = 1
+    max_profit = 0
+    while(buy < len(prices) and sell < len(prices)):
+        profit = prices[sell] - prices[buy]
+        max_profit = max(profit, max_profit)
+        if profit < 0:
+            buy = sell
+
+        sell +=1
+    return max_profit
