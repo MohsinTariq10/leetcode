@@ -39,4 +39,25 @@ def ninjaTraining(n: int, points: List[List[int]]) -> int:
     return dp[n-1][-1]
                     
                     
+from typing import *
+
+  
+def ninjaTraining(n: int, points: List[List[int]]) -> int:
+    dp= [-1]*4
+    dp[0] = max(points[0][1:])
+    dp[1] = max(points[0][0], points[0][2])
+    dp[2] = max(points[0][:2])
+    dp[3] = max(points[0])
+    
+    for day in range(1, n):
+        dummy = [0] * 4
+        for last in range(4):
+            for task in range(3):
+                if last != task:
+                    point = points[day][task] + dp[task]
+                    dummy[last] = max(dummy[last], point)
+        dp = dummy
+    return dp[-1]
+                    
+                    
                     
