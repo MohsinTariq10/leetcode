@@ -18,7 +18,7 @@ def recur(grid, i, j, dp):
         dp[i][j] = min(down, right)
     return dp[i][j]
 
-    
+
 
 # Main.
 t = int(input())
